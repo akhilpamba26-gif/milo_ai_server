@@ -1,5 +1,12 @@
 Last login: Wed Oct 22 18:08:34 on ttys005
 akhilpamba@Samuels-MacBook-Air server.js % >....                                
+  
+   import express from "express";
+import axios from "axios";
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get("/dailyVideo", async (req, res) => {
   try {
     const topic = "latest gadget news";
     const scriptResp = await axios.post(
