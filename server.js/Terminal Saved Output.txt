@@ -1,0 +1,22 @@
+Last login: Wed Oct 22 18:08:34 on ttys005
+akhilpamba@Samuels-MacBook-Air server.js % >....                                
+  try {
+    const topic = "latest gadget news";
+    const scriptResp = await axios.post(
+      "https://api.openai.com/v1/chat/completions",
+      {
+        model: "gpt-4-turbo",
+        messages: [
+          { role: "system", content: "You are Milo White, the AI dog reviewer." },
+          { role: "user", content: Write a 45-second tech short about ${topic}. Include fun tone and pros / cons. }
+        ]
+      },
+      { headers: { Authorization: Bearer ${process.env.OPENAI_KEY} } }
+    );
+    res.json({ success: true, script: scriptResp.data.choices[0].message.content });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+app.listen(PORT, () => console.log(Server running on port ${PORT}));
